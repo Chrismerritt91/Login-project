@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Home')"></head>
+<body>
+<nav th:replace="partials/partials.html :: nav"></nav>
+<form class="container border border-dark" th:action="@{/register}" th:method="post">
+    <label class="form-label" for="firstName">First Name</label>
+    <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name">
+    <label class="form-label" for="lastName">Last Name</label>
+    <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last Name">
+    <label class="form-label" for="username">Username</label>
+    <input class="form-control" type="text" id="username" name="username" placeholder="enter username">
+    <label class="form-label" for="email">Email</label>
+    <input class="form-control" type="text" id="email" name="email" placeholder="enter email">
+    <label class="form-label" for="password">Enter Password</label>
+    <input class="form-control" type="password" id="password" name="password">
+    <label class="form-label" for="confirmPassword">Confirm Password</label>
+    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword">
+    <div class="d-grid">
+        <button type="submit" class="btn btn-outline-secondary">Register Now</button>
+    </div>
+</form>
+</body>
+</html>

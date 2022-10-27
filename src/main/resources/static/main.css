@@ -1,4 +1,8 @@
-.homeBody{
-    background-color: gray;
-    color: #2F542A;
+body{
+    background-color: cornsilk;
+}
+
+.ghost{
+    width: 100%;
+    height: 100px;
 }

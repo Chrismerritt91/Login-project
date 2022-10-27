@@ -3,22 +3,96 @@
 <head th:replace="partials/partials.html :: head('Home')"></head>
 <body>
 <nav th:replace="partials/partials.html :: nav"></nav>
-<form class="container border border-dark" th:action="@{/register}" th:method="post">
-    <label class="form-label" for="firstName">First Name</label>
-    <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name">
-    <label class="form-label" for="lastName">Last Name</label>
-    <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last Name">
-    <label class="form-label" for="username">Username</label>
-    <input class="form-control" type="text" id="username" name="username" placeholder="enter username">
-    <label class="form-label" for="email">Email</label>
-    <input class="form-control" type="text" id="email" name="email" placeholder="enter email">
-    <label class="form-label" for="password">Enter Password</label>
-    <input class="form-control" type="password" id="password" name="password">
-    <label class="form-label" for="confirmPassword">Confirm Password</label>
-    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword">
-    <div class="d-grid">
-        <button type="submit" class="btn btn-outline-secondary">Register Now</button>
+<main>
+    <div class="">
+        <h1 class="text-center ">Register Here</h1>
     </div>
-</form>
+    <div class="container formBody w-50 border border-dark">
+        <h5 class="text-center">Please complete all fields</h5>
+        <form class="container p-2" th:action="@{/register}" th:method="post">
+            <label class="form-label" for="firstName">First Name</label>
+            <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name">
+            <label class="form-label" for="lastName">Last Name</label>
+            <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last Name">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username" placeholder="enter username">
+            <div class="container userExists hidden border border-secondary rounded text-secondary">
+                <p>Username already exists, please try a different username</p>
+            </div>
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="text" id="email" name="email" placeholder="enter email">
+            <label class="form-label" for="password">Enter Password</label>
+            <input class="form-control" type="password" id="password" name="password">
+            <div class="container requirements mt-1 hidden border border-secondary rounded text-secondary">
+                <p><strong class="text-decoration-underline">Password Requirements:</strong></p>
+                <ul>
+                    <li class="lengthCheck">Must be 8 characters in length</li>
+                    <li class="numberCheck">Must contain a minimum of one number</li>
+                    <li class="charCheck">Must contain a minimum of one special character</li>
+                </ul>
+            </div>
+            <label class="form-label" for="confirmPassword">Confirm Password</label>
+            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword">
+            <div class="container isConfirmed mt-1 hidden border border-secondary rounded text-secondary">
+                <p>This does not match your password please try again</p>
+            </div>
+            <div class="d-grid my-1">
+                <button type="submit" class="formBtn hidden btn btn-outline-dark">Register Now</button>
+            </div>
+        </form>
+    </div>
+</main>
+<block th:replace="partials/partials.html :: scripts"></block>
+<script>
+    <!--    displays password requirements when clicked-->
+    $("#password").click(function () {
+        $(".requirements").removeClass("hidden")
+    })
+
+    //code to check that password meets all requirements
+    function hasNumbers(t)
+    {
+        var regex = /\d/g;
+        return regex.test(t);
+    }
+
+    const regexIT= /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+
+    $("#password").keyup(function () {
+        let newPassword = $("#password").val()
+        if(newPassword.length >= 8){
+            $(".lengthCheck").css("color", "green")
+        }else{
+            $(".lengthCheck").css("color", "red")
+        }
+        if(hasNumbers(newPassword)){
+            $(".numberCheck").css("color", "green")
+        }else{
+            $(".numberCheck").css("color", "red")
+        }
+        if(regexIT.test(newPassword)){
+            $(".charCheck").css("color", "green")
+        }else{
+            $(".charCheck").css("color", "red")
+        }
+        if(newPassword.length >= 8 && hasNumbers(newPassword) && regexIT.test(newPassword)){
+            $(".requirements").addClass("hidden")
+        }else{
+            $(".requirements").removeClass("hidden")
+        }
+    })
+
+    $("#confirmPassword").keyup(function (){
+        let password = $("#password").val();
+        let confirm = $("#confirmPassword").val();
+        if(password !== confirm){
+            $(".isConfirmed").removeClass("hidden")
+        }else{
+            $(".formBtn").removeClass("hidden")
+            $(".isConfirmed").addClass("hidden")
+        }
+    })
+
+</script>
 </body>
 </html>

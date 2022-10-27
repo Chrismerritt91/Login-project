@@ -1,8 +1,16 @@
 body{
-    background-color: cornsilk;
+    background-color: silver;
 }
 
 .ghost{
     width: 100%;
     height: 100px;
+}
+
+.formBody{
+    background-color: whitesmoke;
+}
+
+.hidden{
+    display: none;
 }

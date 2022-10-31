@@ -6,16 +6,16 @@
 <main>
     <div class="ghost"></div>
     <div class="">
-        <h1 class="text-center ">Welcome Home</h1>
+        <h1 class="homeTitle text-center">Welcome Home</h1>
     </div>
     <div class="ghost"></div>
-    <div class="container d-flex justify-content-center">
-        <a class="nav-link text-center p-1 m-2 bg-light text-dark border border-dark rounded w-25" th:href="@{/login}">Login</a>
-        <a class="nav-link text-center p-1 m-2 bg-light text-dark border border-dark rounded w-25" th:href="@{/register}">Register</a>
+    <div class="container d-flex justify-content-around">
+        <a class="links text-center p-1 m-2 w-25" th:href="@{/login}">Login</a>
+        <a class="links text-center p-1 m-2 w-25" th:href="@{/register}">Register</a>
     </div>
-
+    <div class="ghost"></div>
+    <div class="ghost"></div>
 </main>
-
 <block th:replace="partials/partials.html :: scripts"></block>
 </body>
 </html>

@@ -1,5 +1,13 @@
-body{
-    background-color: silver;
+.homeBody{
+    background-image: url("images/pexels-fabian-wiktor-994605.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.homeTitle{
+    font-size: 60px;
 }
 
 .ghost{
@@ -7,10 +15,36 @@ body{
     height: 100px;
 }
 
+.links{
+    color: lightcoral;
+    text-decoration: none;
+    font-size: 50px;
+    transition: 1s;
+    border-bottom: lightcoral 4px solid;
+}
+
+.links:hover{
+    color: lightseagreen;
+    border-bottom: lightseagreen 4px solid;
+}
+
 .formBody{
-    background-color: whitesmoke;
+    background-color: aliceblue;
 }
 
 .hidden{
     display: none;
+}
+
+.registerBody{
+    background-image: url("images/pexels-visually-us-1494067.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Bad Script', cursive;
+}
+
+.registerTitle{
+    text-shadow: 0 0 3px black;
+    font-family: 'Kaushan Script', cursive;
 }

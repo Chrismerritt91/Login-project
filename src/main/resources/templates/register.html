@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/partials.html :: head('Home')"></head>
-<body>
+<body class="registerBody">
 <nav th:replace="partials/partials.html :: nav"></nav>
 <main>
-    <div class="">
-        <h1 class="text-center ">Register Here</h1>
+    <div class="ghost"></div>
+    <div>
+        <h1 class="registerTitle text-center text-light">Register Here</h1>
     </div>
     <div class="container formBody w-50 border border-dark">
-        <h5 class="text-center">Please complete all fields</h5>
-        <form class="container p-2" th:action="@{/register}" th:method="post">
-            <label class="form-label" for="firstName">First Name</label>
-            <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name">
-            <label class="form-label" for="lastName">Last Name</label>
-            <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last Name">
-            <label class="form-label" for="username">Username</label>
-            <input class="form-control" type="text" id="username" name="username" placeholder="enter username">
-            <div class="container userExists hidden border border-secondary rounded text-secondary">
+        <h5 class="pt-2 text-center">Please complete all fields</h5>
+        <form class="container p-2" th:action="@{/user/create}" th:method="post" th:object="${user}">
+            <label class="form-label pt-1" for="firstName">First Name</label>
+            <input class="form-control" type="text" id="firstName" name="firstName" th:field="*{first_name}">
+            <label class="form-label pt-1" for="lastName">Last Name</label>
+            <input class="form-control" type="text" id="lastName" name="lastName" th:field="*{last_name}">
+            <label class="form-label pt-1" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username" th:field="*{username}">
+            <div class="container userExists hidden border border-secondary rounded text-secondary pt-1">
                 <p>Username already exists, please try a different username</p>
             </div>
-            <label class="form-label" for="email">Email</label>
-            <input class="form-control" type="text" id="email" name="email" placeholder="enter email">
-            <label class="form-label" for="password">Enter Password</label>
-            <input class="form-control" type="password" id="password" name="password">
+            <label class="form-label pt-1" for="email">Email</label>
+            <input class="form-control" type="text" id="email" name="email" th:field="*{email}">
+            <label class="form-label pt-1" for="password">Enter Password</label>
+            <input class="form-control" type="password" id="password" name="password" th:field="*{password}">
             <div class="container requirements mt-1 hidden border border-secondary rounded text-secondary">
-                <p><strong class="text-decoration-underline">Password Requirements:</strong></p>
+                <p class="my-2"><strong class="mt-1 text-decoration-underline">Password Requirements:</strong></p>
                 <ul>
                     <li class="lengthCheck">Must be 8 characters in length</li>
                     <li class="numberCheck">Must contain a minimum of one number</li>
                     <li class="charCheck">Must contain a minimum of one special character</li>
                 </ul>
             </div>
-            <label class="form-label" for="confirmPassword">Confirm Password</label>
+            <label class="form-label pt-1" for="confirmPassword">Confirm Password</label>
             <input class="form-control" type="password" id="confirmPassword" name="confirmPassword">
-            <div class="container isConfirmed mt-1 hidden border border-secondary rounded text-secondary">
-                <p>This does not match your password please try again</p>
+            <div class="container isConfirmed mt-1 hidden border border-secondary rounded text-secondary pt-1">
+                <p class="my-2">This does not match your password please try again</p>
             </div>
-            <div class="d-grid my-1">
+            <div class="pt-2 d-grid my-1">
                 <button type="submit" class="formBtn hidden btn btn-outline-dark">Register Now</button>
             </div>
         </form>

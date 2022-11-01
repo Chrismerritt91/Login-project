@@ -44,7 +44,33 @@
     font-family: 'Bad Script', cursive;
 }
 
-.registerTitle{
+.formTitle{
     text-shadow: 0 0 3px black;
     font-family: 'Kaushan Script', cursive;
+}
+
+.formBtn{
+    background-color: lightcoral;
+    color: white;
+    border-radius: 5px;
+}
+
+.loginBody{
+    background-image: url("images/pexels-milada-vigerova-5984678.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Bad Script', cursive;
+    height: 100vh;
+}
+
+.profileBody{
+    background-image: url("images/pexels-pixabay-268134.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.mainnav{
+   background-color: aliceblue;
 }

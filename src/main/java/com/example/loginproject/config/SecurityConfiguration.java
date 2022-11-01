@@ -42,21 +42,21 @@ public class SecurityConfiguration {
                 /* Logout configuration */
                 .and()
                     .logout()
-                    .logoutSuccessUrl("/") // append a query string value
+                    .logoutSuccessUrl("/login?logout") // append a query string value
                 /* Pages that can be viewed without having to log in */
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/home") // anyone can see the home and the ads pages
+                    .antMatchers("/home", "/register") // anyone can see the home and the ads pages
                     .permitAll()
                 /* Pages that require authentication */
-                .and()
-                    .authorizeRequests()
-                    .antMatchers(
-//                            "/goals/create", // only authenticated users can create ads
-//                            "/goals/{id}/edit",// only authenticated users can edit ads
-                            "/profile"
-                    )
-                    .authenticated()
+//                .and()
+//                    .authorizeRequests()
+//                    .antMatchers(
+////                            "/goals/create", // only authenticated users can create ads
+////                            "/goals/{id}/edit",// only authenticated users can edit ads
+////                            "/profile"
+//                    )
+//                    .authenticated()
         ;
         return http.build();
     }

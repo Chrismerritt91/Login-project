@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head th:replace="partials/partials.html :: head('Login')"></head>
+<body class="loginBody">
+<nav th:replace="partials/partials.html :: nav"></nav>
+<main>
+    <div class="ghost"></div>
+    <div class="ghost"></div>
+    <div>
+        <h1 class="formTitle text-center text-light">Login</h1>
+    </div>
+<div class="container formBody w-50 border border-dark">
+    <h6 class="pt-2 text-center">Please Enter Username and ID</h6>
+    <form th:action="@{/login}" method="post" class="container p-2">
+        <label for="username" class="form-label pt-1">Username</label>
+        <input class="form-control" type="text" name="username" id="username" >
+        <label for="password" class="form-label pt-1">Password</label>
+        <input class="form-control" type="password" name="password" id="password" >
+        <div class="pt-2 d-grid my-1">
+            <button class="formBtn border border-light">Login</button>
+        </div>
+    </form>
+</div>
+</main>
+<block th:replace="partials/partials.html :: scripts"></block>
 </body>
 </html>

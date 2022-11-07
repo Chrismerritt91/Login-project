@@ -16,18 +16,19 @@
             <input class="form-control" type="text" id="lastName" name="lastName" th:field="*{last_name}">
             <label class="form-label pt-1" for="username">Username</label>
             <input class="form-control" type="text" id="username" name="username" th:field="*{username}">
-            <div class="container userExists hidden border border-secondary rounded text-secondary pt-1">
-                <p>Username already exists, please try a different username</p>
-            </div>
             <label class="form-label pt-1" for="email">Email</label>
             <input class="form-control" type="text" id="email" name="email" th:field="*{email}">
             <label class="form-label pt-1" for="password">Enter Password</label>
-            <input class="form-control" type="password" id="password" name="password" th:field="*{password}">
+            <div class="input-group">
+                <input class="form-control" type="password" id="password" name="password" th:field="*{password}">
+                <button type="button" class="togglePassword btn btn-outline-secondary"><i class="fa-regular fa-eye" id="toggleIcon"></i></button>
+            </div>
             <div class="container requirements mt-1 hidden border border-secondary rounded text-secondary">
                 <p class="my-2"><strong class="mt-1 text-decoration-underline">Password Requirements:</strong></p>
                 <ul>
                     <li class="lengthCheck">Must be 8 characters in length</li>
                     <li class="numberCheck">Must contain a minimum of one number</li>
+                    <li class="capsCheck">Must contain one capital letter.</li>
                     <li class="charCheck">Must contain a minimum of one special character</li>
                 </ul>
             </div>
@@ -44,52 +45,68 @@
 </main>
 <block th:replace="partials/partials.html :: scripts"></block>
 <script>
+
     <!--    displays password requirements when clicked-->
     $("#password").click(function () {
         $(".requirements").removeClass("hidden")
     })
 
     //code to check that password meets all requirements
-    function hasNumbers(t)
-    {
-        var regex = /\d/g;
-        return regex.test(t);
-    }
 
-    const regexIT= /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+    const regexNums = /\d/g;
+    const regexIT = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    const regexCaps = /[A-Z]/;
 
     $("#password").keyup(function () {
         let newPassword = $("#password").val()
-        if(newPassword.length >= 8){
+        if (newPassword.length >= 8) {
             $(".lengthCheck").css("color", "green")
-        }else{
+        } else {
             $(".lengthCheck").css("color", "red")
         }
-        if(hasNumbers(newPassword)){
+        if (regexNums.test(newPassword)) {
             $(".numberCheck").css("color", "green")
-        }else{
+        } else {
             $(".numberCheck").css("color", "red")
         }
-        if(regexIT.test(newPassword)){
+        if (regexIT.test(newPassword)) {
             $(".charCheck").css("color", "green")
-        }else{
+        } else {
             $(".charCheck").css("color", "red")
         }
-        if(newPassword.length >= 8 && hasNumbers(newPassword) && regexIT.test(newPassword)){
+        if (regexCaps.test(newPassword)) {
+            $(".capsCheck").css("color", "green")
+        } else {
+            $(".capsCheck").css("color", "red")
+        }
+        if (newPassword.length >= 8 && regexNums.test(newPassword) && regexIT.test(newPassword) && regexCaps.test(newPassword)) {
             $(".requirements").addClass("hidden")
-        }else{
+        } else {
             $(".requirements").removeClass("hidden")
         }
     })
 
-    $("#confirmPassword").keyup(function (){
+    //displays message until the password is a confirmed match
+    $("#confirmPassword").keyup(function () {
         let password = $("#password").val();
         let confirm = $("#confirmPassword").val();
-        if(password !== confirm){
+        if (password !== confirm) {
             $(".isConfirmed").removeClass("hidden")
-        }else{
+        } else {
             $(".formBtn").removeClass("hidden")
             $(".isConfirmed").addClass("hidden")
+        }
+    })
+
+    //hide or reveal password text
+    $(".togglePassword").click(function(){
+        let passwordType = $("#password").attr("type")
+        if(passwordType === "password"){
+            $("#password").attr("type", "text")
+            $("#toggleIcon").attr("class", "fa-regular fa-eye-slash")
+        }else{
+            $("#password").attr("type", "password")
+            $("#toggleIcon").attr("class", "fa-regular fa-eye")
         }
     })
 
